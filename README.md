@@ -1,71 +1,33 @@
 # AI-models
 
-Simple Reflex Model
-Overview
-The Simple Reflex Model is one of the foundational concepts in artificial intelligence. It describes an agent that selects actions based solely on the current percept, without considering the history of past states. This model operates under a set of predefined rules and reacts to specific stimuli in the environment.
+# AI Models Repository
 
-Key Features
-Reactive Behavior: The agent acts in response to its immediate environment.
-Simplicity: This model is straightforward to implement, making it ideal for basic tasks.
-Rule-Based: Actions are determined by a set of condition-action pairs, where specific conditions trigger specific actions.
-Components
-Environment: The setting in which the agent operates, typically represented as a grid or maze.
-Agent: The entity that perceives the environment and takes actions.
-Percepts: Information received from the environment that informs the agent's actions.
-Actions: The responses that the agent takes based on its percepts.
-Implementation
-Code Example
-Here's a basic implementation of a Simple Reflex Model in Python:
+This repository contains code implementations of various AI models, including Simple Reflex Models and Model-Based Reflex Agents.
 
-python
-Copy code
-grid = [
-    ['D', 'C', 'D'],
-    ['D', 'D', 'C'],
-    ['C', 'D', 'D']
-]
+## Simple Reflex Model
 
-position = [0, 0]
+The Simple Reflex Model is a basic AI agent that performs actions based on the current percepts from the environment. It follows a straightforward approach to decision-making, executing a specific action when a certain condition is met.
 
-def simple_reflex_agent(grid, position):
-    x, y = position
-    rows = len(grid)
-    cols = len(grid[0])
+### Key Features
+- Cleans a grid of cells represented as 'D' (dirty) and 'C' (clean).
+- Moves through the grid in a defined pattern, ensuring all cells are cleaned.
+- Utilizes a simple if-else structure for decision-making.
 
-    if grid[x][y] == 'D':
-        print(f"Cleaning position ({x}, {y})")
-        grid[x][y] = 'C'  # Clean the current cell
+### Usage
+To run the Simple Reflex Model, execute the `simple_reflex_model.py` script. The agent will navigate the grid, cleaning dirty cells as it moves.
 
-    if y < cols - 1:          # Move to the right
-        y += 1
-    elif x < rows - 1:        # Move to the next row if y reaches the end of row
-        x += 1
-        y = 0
-    else:
-        print("Finished cleaning the grid.")
-        return None
+## Model-Based Reflex Agent
 
-    return [x, y]  # Return the new position
+The Model-Based Reflex Agent extends the capabilities of the Simple Reflex Model by maintaining an internal state of the environment. This allows the agent to keep track of which cells have been cleaned, making it more efficient in navigating the grid.
 
-while position:
-    position = simple_reflex_agent(grid, position)
-Explanation
-Grid Representation: The environment is represented as a 2D list where 'D' indicates dirty cells and 'C' indicates clean cells.
-Agent Logic: The agent cleans the current position if it is dirty and decides its next move based on the current position.
-Usage
-Clone the repository:
+### Key Features
+- Cleans a grid of cells while keeping track of visited positions.
+- Adapts its movement pattern based on the current row (zigzag pattern).
+- Uses a set to store visited cells, preventing re-cleaning of the same cell.
 
-bash
-Copy code
-git clone https://github.com/yourusername/simple-reflex-model.git
-cd simple-reflex-model
-Run the script:
+### Usage
+To run the Model-Based Reflex Agent, execute the `model_based_reflex_agent.py` script. The agent will clean the grid while navigating efficiently through each row.
 
-bash
-Copy code
-python simple_reflex_model.py
-Conclusion
-The Simple Reflex Model is a fundamental AI concept that serves as the basis for more complex decision-making models. It is effective in environments where the situation can be handled through a set of predefined rules and immediate reactions.
-
+## License
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
